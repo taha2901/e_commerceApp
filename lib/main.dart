@@ -1,14 +1,17 @@
-import 'package:ecommerce_app/core/widget/cutome_bottom_nav_bar.dart';
+import 'package:ecommerce_app/core/routings/app_router.dart';
+import 'package:ecommerce_app/core/routings/routers.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp(
+    appRouter: AppRouter(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final AppRouter appRouter;
+  const MyApp({super.key, required this.appRouter});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,7 +21,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const CustomBottomNavbar(),
+      initialRoute: Routers.splashRoute,
+      onGenerateRoute: appRouter.generateRoute,
     );
   }
 }
